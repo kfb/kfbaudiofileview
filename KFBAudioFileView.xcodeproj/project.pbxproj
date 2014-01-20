@@ -1,0 +1,491 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FEA012E8187EABC700413B79 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA012E7187EABC700413B79 /* Cocoa.framework */; };
+		FEA012F2187EABC700413B79 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FEA012F0187EABC700413B79 /* InfoPlist.strings */; };
+		FEA012FD187EABC700413B79 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA012FC187EABC700413B79 /* XCTest.framework */; };
+		FEA012FE187EABC700413B79 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA012E7187EABC700413B79 /* Cocoa.framework */; };
+		FEA01301187EABC700413B79 /* KFBAudioFileView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA012E4187EABC700413B79 /* KFBAudioFileView.framework */; };
+		FEA01307187EABC700413B79 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FEA01305187EABC700413B79 /* InfoPlist.strings */; };
+		FEA01309187EABC700413B79 /* KFBAudioFileViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA01308187EABC700413B79 /* KFBAudioFileViewTests.m */; };
+		FEA01314187EACEB00413B79 /* KFBAudioFileWaveformView.h in Headers */ = {isa = PBXBuildFile; fileRef = FEA01312187EACEB00413B79 /* KFBAudioFileWaveformView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FEA01315187EACEB00413B79 /* KFBAudioFileWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA01313187EACEB00413B79 /* KFBAudioFileWaveformView.m */; };
+		FEA01318187EAD3C00413B79 /* KFBAudioFileSpectrogramView.h in Headers */ = {isa = PBXBuildFile; fileRef = FEA01316187EAD3C00413B79 /* KFBAudioFileSpectrogramView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FEA01319187EAD3C00413B79 /* KFBAudioFileSpectrogramView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA01317187EAD3C00413B79 /* KFBAudioFileSpectrogramView.m */; };
+		FEA0135D187EAE7500413B79 /* KFBAudioFileView.h in Headers */ = {isa = PBXBuildFile; fileRef = FEA0135C187EAE7500413B79 /* KFBAudioFileView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FEA01368187EB7FB00413B79 /* KFBAudioFileGenericView.h in Headers */ = {isa = PBXBuildFile; fileRef = FEA01366187EB7FB00413B79 /* KFBAudioFileGenericView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FEA01369187EB7FB00413B79 /* KFBAudioFileGenericView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA01367187EB7FB00413B79 /* KFBAudioFileGenericView.m */; };
+		FEA0136B187EB9F400413B79 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA0136A187EB9F400413B79 /* AudioToolbox.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FEA012FF187EABC700413B79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FEA012DB187EABC700413B79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FEA012E3187EABC700413B79;
+			remoteInfo = KFBAudioFileView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FEA012E4187EABC700413B79 /* KFBAudioFileView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KFBAudioFileView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEA012E7187EABC700413B79 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		FEA012EA187EABC700413B79 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FEA012EB187EABC700413B79 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FEA012EC187EABC700413B79 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		FEA012EF187EABC700413B79 /* KFBAudioFileView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KFBAudioFileView-Info.plist"; sourceTree = "<group>"; };
+		FEA012F1187EABC700413B79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FEA012F3187EABC700413B79 /* KFBAudioFileView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KFBAudioFileView-Prefix.pch"; sourceTree = "<group>"; };
+		FEA012FB187EABC700413B79 /* KFBAudioFileViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KFBAudioFileViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEA012FC187EABC700413B79 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		FEA01304187EABC700413B79 /* KFBAudioFileViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KFBAudioFileViewTests-Info.plist"; sourceTree = "<group>"; };
+		FEA01306187EABC700413B79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FEA01308187EABC700413B79 /* KFBAudioFileViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFBAudioFileViewTests.m; sourceTree = "<group>"; };
+		FEA01312187EACEB00413B79 /* KFBAudioFileWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFBAudioFileWaveformView.h; sourceTree = "<group>"; };
+		FEA01313187EACEB00413B79 /* KFBAudioFileWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFBAudioFileWaveformView.m; sourceTree = "<group>"; };
+		FEA01316187EAD3C00413B79 /* KFBAudioFileSpectrogramView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFBAudioFileSpectrogramView.h; sourceTree = "<group>"; };
+		FEA01317187EAD3C00413B79 /* KFBAudioFileSpectrogramView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFBAudioFileSpectrogramView.m; sourceTree = "<group>"; };
+		FEA0135C187EAE7500413B79 /* KFBAudioFileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFBAudioFileView.h; sourceTree = "<group>"; };
+		FEA01366187EB7FB00413B79 /* KFBAudioFileGenericView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFBAudioFileGenericView.h; sourceTree = "<group>"; };
+		FEA01367187EB7FB00413B79 /* KFBAudioFileGenericView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFBAudioFileGenericView.m; sourceTree = "<group>"; };
+		FEA0136A187EB9F400413B79 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FEA012E0187EABC700413B79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEA0136B187EB9F400413B79 /* AudioToolbox.framework in Frameworks */,
+				FEA012E8187EABC700413B79 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEA012F8187EABC700413B79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEA01301187EABC700413B79 /* KFBAudioFileView.framework in Frameworks */,
+				FEA012FE187EABC700413B79 /* Cocoa.framework in Frameworks */,
+				FEA012FD187EABC700413B79 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FEA012DA187EABC700413B79 = {
+			isa = PBXGroup;
+			children = (
+				FEA012ED187EABC700413B79 /* KFBAudioFileView */,
+				FEA01302187EABC700413B79 /* KFBAudioFileViewTests */,
+				FEA012E6187EABC700413B79 /* Frameworks */,
+				FEA012E5187EABC700413B79 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FEA012E5187EABC700413B79 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FEA012E4187EABC700413B79 /* KFBAudioFileView.framework */,
+				FEA012FB187EABC700413B79 /* KFBAudioFileViewTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FEA012E6187EABC700413B79 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FEA0136A187EB9F400413B79 /* AudioToolbox.framework */,
+				FEA012E7187EABC700413B79 /* Cocoa.framework */,
+				FEA012FC187EABC700413B79 /* XCTest.framework */,
+				FEA012E9187EABC700413B79 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FEA012E9187EABC700413B79 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FEA012EA187EABC700413B79 /* Foundation.framework */,
+				FEA012EB187EABC700413B79 /* CoreData.framework */,
+				FEA012EC187EABC700413B79 /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		FEA012ED187EABC700413B79 /* KFBAudioFileView */ = {
+			isa = PBXGroup;
+			children = (
+				FEA012EE187EABC700413B79 /* Supporting Files */,
+				FEA01312187EACEB00413B79 /* KFBAudioFileWaveformView.h */,
+				FEA01313187EACEB00413B79 /* KFBAudioFileWaveformView.m */,
+				FEA01316187EAD3C00413B79 /* KFBAudioFileSpectrogramView.h */,
+				FEA01317187EAD3C00413B79 /* KFBAudioFileSpectrogramView.m */,
+				FEA0135C187EAE7500413B79 /* KFBAudioFileView.h */,
+				FEA01366187EB7FB00413B79 /* KFBAudioFileGenericView.h */,
+				FEA01367187EB7FB00413B79 /* KFBAudioFileGenericView.m */,
+			);
+			path = KFBAudioFileView;
+			sourceTree = "<group>";
+		};
+		FEA012EE187EABC700413B79 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FEA012EF187EABC700413B79 /* KFBAudioFileView-Info.plist */,
+				FEA012F0187EABC700413B79 /* InfoPlist.strings */,
+				FEA012F3187EABC700413B79 /* KFBAudioFileView-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FEA01302187EABC700413B79 /* KFBAudioFileViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				FEA01308187EABC700413B79 /* KFBAudioFileViewTests.m */,
+				FEA01303187EABC700413B79 /* Supporting Files */,
+			);
+			path = KFBAudioFileViewTests;
+			sourceTree = "<group>";
+		};
+		FEA01303187EABC700413B79 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FEA01304187EABC700413B79 /* KFBAudioFileViewTests-Info.plist */,
+				FEA01305187EABC700413B79 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FEA012E1187EABC700413B79 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEA0135D187EAE7500413B79 /* KFBAudioFileView.h in Headers */,
+				FEA01368187EB7FB00413B79 /* KFBAudioFileGenericView.h in Headers */,
+				FEA01318187EAD3C00413B79 /* KFBAudioFileSpectrogramView.h in Headers */,
+				FEA01314187EACEB00413B79 /* KFBAudioFileWaveformView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		FEA012E3187EABC700413B79 /* KFBAudioFileView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FEA0130C187EABC700413B79 /* Build configuration list for PBXNativeTarget "KFBAudioFileView" */;
+			buildPhases = (
+				FEA012DF187EABC700413B79 /* Sources */,
+				FEA012E0187EABC700413B79 /* Frameworks */,
+				FEA012E1187EABC700413B79 /* Headers */,
+				FEA012E2187EABC700413B79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KFBAudioFileView;
+			productName = KFBAudioFileView;
+			productReference = FEA012E4187EABC700413B79 /* KFBAudioFileView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FEA012FA187EABC700413B79 /* KFBAudioFileViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FEA0130F187EABC700413B79 /* Build configuration list for PBXNativeTarget "KFBAudioFileViewTests" */;
+			buildPhases = (
+				FEA012F7187EABC700413B79 /* Sources */,
+				FEA012F8187EABC700413B79 /* Frameworks */,
+				FEA012F9187EABC700413B79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FEA01300187EABC700413B79 /* PBXTargetDependency */,
+			);
+			name = KFBAudioFileViewTests;
+			productName = KFBAudioFileViewTests;
+			productReference = FEA012FB187EABC700413B79 /* KFBAudioFileViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FEA012DB187EABC700413B79 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = KFB;
+				TargetAttributes = {
+					FEA012FA187EABC700413B79 = {
+						TestTargetID = FEA012E3187EABC700413B79;
+					};
+				};
+			};
+			buildConfigurationList = FEA012DE187EABC700413B79 /* Build configuration list for PBXProject "KFBAudioFileView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FEA012DA187EABC700413B79;
+			productRefGroup = FEA012E5187EABC700413B79 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FEA012E3187EABC700413B79 /* KFBAudioFileView */,
+				FEA012FA187EABC700413B79 /* KFBAudioFileViewTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FEA012E2187EABC700413B79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEA012F2187EABC700413B79 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEA012F9187EABC700413B79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEA01307187EABC700413B79 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FEA012DF187EABC700413B79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEA01369187EB7FB00413B79 /* KFBAudioFileGenericView.m in Sources */,
+				FEA01319187EAD3C00413B79 /* KFBAudioFileSpectrogramView.m in Sources */,
+				FEA01315187EACEB00413B79 /* KFBAudioFileWaveformView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEA012F7187EABC700413B79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEA01309187EABC700413B79 /* KFBAudioFileViewTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FEA01300187EABC700413B79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FEA012E3187EABC700413B79 /* KFBAudioFileView */;
+			targetProxy = FEA012FF187EABC700413B79 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FEA012F0187EABC700413B79 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FEA012F1187EABC700413B79 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FEA01305187EABC700413B79 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FEA01306187EABC700413B79 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FEA0130A187EABC700413B79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		FEA0130B187EABC700413B79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FEA0130D187EABC700413B79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KFBAudioFileView/KFBAudioFileView-Prefix.pch";
+				INFOPLIST_FILE = "KFBAudioFileView/KFBAudioFileView-Info.plist";
+				INSTALL_PATH = "@loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		FEA0130E187EABC700413B79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KFBAudioFileView/KFBAudioFileView-Prefix.pch";
+				INFOPLIST_FILE = "KFBAudioFileView/KFBAudioFileView-Info.plist";
+				INSTALL_PATH = "@loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		FEA01310187EABC700413B79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KFBAudioFileView.framework/Versions/A/KFBAudioFileView";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KFBAudioFileView/KFBAudioFileView-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "KFBAudioFileViewTests/KFBAudioFileViewTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		FEA01311187EABC700413B79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KFBAudioFileView.framework/Versions/A/KFBAudioFileView";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KFBAudioFileView/KFBAudioFileView-Prefix.pch";
+				INFOPLIST_FILE = "KFBAudioFileViewTests/KFBAudioFileViewTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FEA012DE187EABC700413B79 /* Build configuration list for PBXProject "KFBAudioFileView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEA0130A187EABC700413B79 /* Debug */,
+				FEA0130B187EABC700413B79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FEA0130C187EABC700413B79 /* Build configuration list for PBXNativeTarget "KFBAudioFileView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEA0130D187EABC700413B79 /* Debug */,
+				FEA0130E187EABC700413B79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FEA0130F187EABC700413B79 /* Build configuration list for PBXNativeTarget "KFBAudioFileViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEA01310187EABC700413B79 /* Debug */,
+				FEA01311187EABC700413B79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FEA012DB187EABC700413B79 /* Project object */;
+}
