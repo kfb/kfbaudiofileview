@@ -90,45 +90,6 @@
     
     [[NSGraphicsContext currentContext] saveGraphicsState];
     
-//    // Assume mAudioPoints is a float* with your audio points
-//    // (with {sampleIndex,value} pairs), and mAudioPointCount
-//    // contains the # of points in the buffer.
-//    
-//    CGMutablePathRef halfPath = CGPathCreateMutable();
-//    CGPathAddLines( halfPath, NULL, audioPoints, overviewDataSize ); // magic!
-//    
-//    // Build the destination path
-//    CGMutablePathRef path = CGPathCreateMutable();
-//    
-//    // Transform to fit the waveform ([0,1] range) into the vertical space
-//    // ([halfHeight,height] range)
-//    double halfHeight = floor( NSHeight( self.bounds ) / 2.0 );
-//    CGAffineTransform xf = CGAffineTransformIdentity;
-//    xf = CGAffineTransformTranslate( xf, 0.0, halfHeight );
-//    xf = CGAffineTransformScale( xf, 1.0, halfHeight );
-//    
-//    // Add the transformed path to the destination path
-//    CGPathAddPath( path, &xf, halfPath );
-//    
-//    // Transform to fit the waveform ([0,1] range) into the vertical space
-//    // ([0,halfHeight] range), flipping the Y axis
-//    xf = CGAffineTransformIdentity;
-//    xf = CGAffineTransformTranslate( xf, 0.0, halfHeight );
-//    xf = CGAffineTransformScale( xf, 1.0, -halfHeight );
-//    
-//    // Add the transformed path to the destination path
-//    CGPathAddPath( path, &xf, halfPath );
-//    
-//    CGPathRelease( halfPath ); // clean up!
-//    
-//    NSGraphicsContext * nsGraphicsContext = [NSGraphicsContext currentContext];
-//    CGContextRef cr = (CGContextRef) [nsGraphicsContext graphicsPort];
-//    
-//    CGContextAddPath(cr, path);
-//    CGContextStrokePath(cr);
-//
-//    CGPathRelease(path);
-    
     [[NSColor clearColor] setFill];
     [[NSGraphicsContext currentContext] restoreGraphicsState];
 }

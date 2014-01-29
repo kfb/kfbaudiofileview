@@ -29,6 +29,4 @@
 - (BOOL)convertAudioFileWithError:(NSError **)error;
 - (BOOL)setAudioFile:(NSURL *)fileURL withError:(NSError **)error;
 
-//- (void)setAudioFile:(NSURL *)fileURL;
-
 @end
