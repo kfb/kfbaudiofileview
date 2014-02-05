@@ -30,8 +30,8 @@
     // TODO: 'strategy' currently ignored
     
     // Calculate the size of each bin
-    uint32_t binSize = audioDataSize / binCount;
-    
+    uint32_t binSize = numSamples / binCount;
+
     // If there's an existing binned audio array, free it
     if (binnedAudio)
     {
@@ -62,9 +62,11 @@
         uint32_t binEnd   = binStart + binSize;
         
         // Make sure we don't overflow
-        if (binEnd > audioDataSize)
+        if (binEnd > numSamples)
         {
-            binEnd = audioDataSize;
+            binEnd = numSamples;
+            
+            NSLog(@"Adjusting binEnd to numSamples (%i) to avoid overflow", numSamples);
         }
         
         // Extract the max value from abs(sample value)

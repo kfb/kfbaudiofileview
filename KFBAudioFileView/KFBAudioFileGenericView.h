@@ -23,6 +23,9 @@
     
     // The size of the audio data
     uint32_t audioDataSize;
+    
+    // The number of samples in the audioData array (which should always be audioDataSize / sizeof(float))
+    uint32_t numSamples;
 }
 
 - (BOOL)extractSampleDataWithError:(NSError **)error;

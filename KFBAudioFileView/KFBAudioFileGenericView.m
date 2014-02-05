@@ -201,6 +201,7 @@ static uint32_t kTargetNumberOfChannels = 2;
     
     audioDataSize = sizeof(float) * segmentSize;
     audioData     = malloc(audioDataSize);
+    numSamples    = audioDataSize / sizeof(float);
     
     if (!audioData)
     {
