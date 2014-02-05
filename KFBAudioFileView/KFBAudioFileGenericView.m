@@ -173,7 +173,7 @@ static uint32_t kTargetNumberOfChannels = 2;
     }
     
     // Find the length, in frames, of the audio data
-    int64_t fileLengthFrames = 0;
+    int64_t  fileLengthFrames     = 0;
     uint32_t fileLengthFramesSize = sizeof(int64_t);
     
     OSStatus status = ExtAudioFileGetProperty(audioFile, kExtAudioFileProperty_FileLengthFrames,
