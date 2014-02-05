@@ -74,8 +74,6 @@
         
         for (uint32_t j = binStart; j < binEnd; j++)
         {
-            if (j == 12042240) { NSLog(@"audioData[%u] = %f", j, audioData[j]); }
-            
             if (fabsf(audioData[j]) > maxValue)
             {
                 maxValue = audioData[j];
