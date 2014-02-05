@@ -45,7 +45,11 @@
     
     if (!binnedAudio)
     {
-        *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:ENOMEM userInfo:nil];
+        if (error)
+        {
+            *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:ENOMEM userInfo:nil];
+        }
+        
         NSLog(@"Couldn't allocate memory for binned audio array");
         
         return false;

@@ -51,8 +51,12 @@ static uint32_t kTargetNumberOfChannels = 2;
         
         if (status)
         {
-            *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
-            NSLog(@"Error disposing of previous ExtAudioFileRef: %@", *error);
+            if (error)
+            {
+                *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+                
+                NSLog(@"Error disposing of previous ExtAudioFileRef: %@", *error);
+            }
             
             return false;
         }
@@ -63,8 +67,12 @@ static uint32_t kTargetNumberOfChannels = 2;
     
     if (status)
     {
-        *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
-        NSLog(@"Error opening ExtAudioFileRef from %@: %@", fileURL, *error);
+        if (error)
+        {
+            *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+            
+            NSLog(@"Error opening ExtAudioFileRef from %@: %@", fileURL, *error);
+        }
         
         return false;
     }
@@ -98,8 +106,12 @@ static uint32_t kTargetNumberOfChannels = 2;
     
     if (status)
     {
-        *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
-        NSLog(@"Error obtaining source file data format: %@", *error);
+        if (error)
+        {
+            *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+            
+            NSLog(@"Error obtaining source file data format: %@", *error);
+        }
         
         return false;
     }
@@ -137,8 +149,12 @@ static uint32_t kTargetNumberOfChannels = 2;
     
     if (status)
     {
-        *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
-        NSLog(@"Error setting target file data format: %@", *error);
+        if (error)
+        {
+            *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+            
+            NSLog(@"Error setting target file data format: %@", *error);
+        }
         
         return false;
     }
@@ -165,8 +181,12 @@ static uint32_t kTargetNumberOfChannels = 2;
     
     if (status)
     {
-        *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
-        NSLog(@"Error extracting frame count of audio data: %@", *error);
+        if (error)
+        {
+            *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+            
+            NSLog(@"Error extracting frame count of audio data: %@", *error);
+        }
         
         return false;
     }
@@ -184,7 +204,11 @@ static uint32_t kTargetNumberOfChannels = 2;
     
     if (!audioData)
     {
-        *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:ENOMEM userInfo:nil];
+        if (error)
+        {
+            *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:ENOMEM userInfo:nil];
+        }
+        
         NSLog(@"Couldn't allocate memory for audio data");
         
         return false;
@@ -207,8 +231,12 @@ static uint32_t kTargetNumberOfChannels = 2;
     
     if (status)
     {
-        *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
-        NSLog(@"Error reading audio data: %@", *error);
+        if (error)
+        {
+            *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+            
+            NSLog(@"Error reading audio data: %@", *error);
+        }
         
         return false;
     }
