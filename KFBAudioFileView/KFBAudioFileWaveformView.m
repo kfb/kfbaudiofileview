@@ -84,7 +84,7 @@
         {
             if (fabsf(audioData[j]) > maxValue)
             {
-                maxValue = audioData[j];
+                maxValue = fabsf(audioData[j]);
             }
         }
         
