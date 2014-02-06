@@ -11,6 +11,10 @@
 #import <Cocoa/Cocoa.h>
 #import <AudioToolbox/AudioToolbox.h>
 
+/**
+ * Abstract superclass of the audio file views, responsible for opening and converting
+ * audio data for display by subclasses.
+ */
 @interface KFBAudioFileGenericView : NSView {
     // A handle to the audio file
     ExtAudioFileRef audioFile;
@@ -28,6 +32,7 @@
     uint32_t numSamples;
 }
 
+// TODO: better organise these methods
 - (BOOL)extractSampleDataWithError:(NSError **)error;
 - (BOOL)convertAudioFileWithError:(NSError **)error;
 - (BOOL)setAudioFile:(NSURL *)fileURL withError:(NSError **)error;
