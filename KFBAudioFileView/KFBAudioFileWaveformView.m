@@ -93,17 +93,89 @@
         NSLog(@"Binned sample %u to %u with value %f", binStart, binEnd, maxValue);
     }
     
+    [self setNeedsDisplay:YES];
+    
     return true;
 }
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-	[super drawRect:dirtyRect];
+    // Clear the view rectangle
+    [[NSColor whiteColor] set];
+    [NSBezierPath fillRect:dirtyRect];
     
-    [[NSGraphicsContext currentContext] saveGraphicsState];
+    // Create a bunch of {sampleIndex, value} pairs
+    CGPoint audioPoints[binCount];
     
-    [[NSColor clearColor] setFill];
-    [[NSGraphicsContext currentContext] restoreGraphicsState];
+    CGFloat width  = [self bounds].size.width;
+    CGFloat height = [self bounds].size.height;
+    CGFloat stride = width / binCount;
+    
+    for (uint32_t i = 0; i < binCount; i++)
+    {
+        audioPoints[i].x = i * stride;
+        audioPoints[i].y = binnedAudio[i];
+        
+        NSLog(@"Generated audio point {%f, %f}", audioPoints[i].x, audioPoints[i].y);
+    }
+    
+    // With thanks to Chris at SuperMegaUltraGroovy:
+    //
+    // Build the destination path
+    CGMutablePathRef path = CGPathCreateMutable();
+    
+    // Add a centre line
+    CGPoint centreLinePoints[] = {
+        {0.0, NSHeight([self bounds]) / 2.0},
+        {NSWidth([self bounds]), NSHeight([self bounds]) / 2.0}
+    };
+    
+    CGMutablePathRef centrePath = CGPathCreateMutable();
+    CGPathAddLines(centrePath, NULL, centreLinePoints, 2);
+    
+    // Add the centre line to the destination path
+    CGPathAddPath(path, NULL, centrePath);
+    
+    // Get the overview waveform data (taking into account the level of detail to
+    // create the reduced data set)
+    CGMutablePathRef halfPath = CGPathCreateMutable();
+    CGPathAddLines(halfPath, NULL, audioPoints, binCount);
+    
+    // Transform to fit the waveform ([0,1] range) into the vertical space
+    // ([halfHeight,height] range)
+    double halfHeight = floor(height / 2.0);
+    
+    CGAffineTransform xf = CGAffineTransformIdentity;
+    
+    xf = CGAffineTransformTranslate(xf, 0.0, halfHeight);
+    xf = CGAffineTransformScale(xf, 1.0, halfHeight);
+    
+    // Add the transformed path to the destination path
+    CGPathAddPath( path, &xf, halfPath );
+    
+    // Transform to fit the waveform ([0,1] range) into the vertical space
+    // ([0,halfHeight] range), flipping the Y axis
+    xf = CGAffineTransformIdentity;
+    
+    xf = CGAffineTransformTranslate(xf, 0.0, halfHeight);
+    xf = CGAffineTransformScale(xf, 1.0, -halfHeight);
+    
+    // Add the transformed path to the destination path
+    CGPathAddPath(path, &xf, halfPath);
+    
+    CGPathRelease(halfPath); // clean up!
+    
+    // Now, path contains the full waveform path.
+    CGContextRef cr = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
+    
+    [[NSColor blueColor] set];
+    
+    CGContextSetLineWidth(cr, 0.5);
+    
+    CGContextAddPath(cr, path);
+    CGContextDrawPath(cr, kCGPathFillStroke);
+    
+    CGPathRelease(path);
 }
 
 @end
