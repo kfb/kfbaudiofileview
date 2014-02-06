@@ -12,10 +12,23 @@
 
 - (id)initWithFrame:(NSRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
+    return [self initWithFrame:frame binCount:0];
+}
+
+- (id)initWithFrame:(NSRect)frameRect binCount:(uint32_t)count
+{
+    if (self = [super initWithFrame:frameRect])
+    {
+        // If count is zero, set the number of bins to the width of the view
+        if (count == 0) { count = [self bounds].size.width; }
         
+        // Store the bin count, we'll use it later in drawRect
+        self.binCount = count;
+        
+        // Allocate space for the binned audio
+        binnedAudio = malloc(sizeof(float) * self.binCount);
     }
+    
     return self;
 }
 
@@ -25,46 +38,41 @@
     free(binnedAudio);
 }
 
-- (BOOL)splitAudioDataIntoNumberOfBins:(uint32_t)count usingStrategy:(KFBBinStrategy)strategy withError:(NSError **)error
+- (float)__processBinWithAbsStrategyAtStartIndex:(uint32_t)binStart endIndex:(uint32_t)binEnd
 {
-    // TODO: 'strategy' currently ignored
+    // Extract the max value from abs(sample value)
+    float maxValue = 0.0f;
     
-    // Store the bin count (we'll use it when drawing the view)
-    if (count == 0)
+    for (uint32_t j = binStart; j < binEnd; j++)
     {
-        count = [self bounds].size.width;
-    }
-    
-    binCount = count;
-    
-    // Calculate the size of each bin
-    uint32_t binSize = numSamples / binCount;
-
-    // If there's an existing binned audio array, free it
-    if (binnedAudio)
-    {
-        NSLog(@"Freeing previous binned audio array");
-        
-        free(binnedAudio);
-    }
-    
-    // Allocate the binned audio array
-    binnedAudio = malloc(sizeof(float) * binCount);
-    
-    if (!binnedAudio)
-    {
-        if (error)
+        if (fabsf(audioData[j]) > maxValue)
         {
-            *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:ENOMEM userInfo:nil];
+            maxValue = fabsf(audioData[j]);
         }
-        
-        NSLog(@"Couldn't allocate memory for binned audio array");
-        
-        return false;
     }
     
-    // Loop over the audio data, extracting just maximum absolute value
-    for (uint32_t i = 0; i < binCount; i++)
+    // Give back the maximum value for the bin
+    return maxValue;
+}
+
+- (float)__processBinUsingStrategy:(KFBBinStrategy)strategy atStartIndex:(uint32_t)binStart endIndex:(uint32_t)binEnd
+{
+    switch (strategy) {
+        case kKFBBinStrategy_Abs:
+            return [self __processBinWithAbsStrategyAtStartIndex:binStart endIndex:binEnd];
+            
+        default:
+            NSLog(@"Unknown KFBBinStrategy: 0x%08x", strategy);
+            
+            return 0.0;
+    }
+}
+
+- (void)__binAudioDataWithStrategy:(KFBBinStrategy)strategy
+{
+    uint32_t binSize = numSamples / self.binCount;
+    
+    for (uint32_t i = 0; i < self.binCount; i++)
     {
         uint32_t binStart = i * binSize;
         uint32_t binEnd   = binStart + binSize;
@@ -77,52 +85,71 @@
             NSLog(@"Adjusting binEnd to numSamples (%i) to avoid overflow", numSamples);
         }
         
-        // Extract the max value from abs(sample value)
-        float maxValue = 0.0f;
+        binnedAudio[i] = [self __processBinUsingStrategy:kKFBBinStrategy_Abs atStartIndex:binStart endIndex:binEnd];
         
-        for (uint32_t j = binStart; j < binEnd; j++)
+        NSLog(@"Binned sample %u to %u with value %f", binStart, binEnd, binnedAudio[i]);
+    }
+}
+
+- (BOOL)__reallocateBinnedAudioWithError:(NSError **)error
+{
+    // Allocate (or reallocate if it's already there) the binned audio array
+    float *newBinnedAudio = realloc(binnedAudio, sizeof(float) * self.binCount);
+    
+    // Check if the realloc worked
+    if (!newBinnedAudio)
+    {
+        if (error)
         {
-            if (fabsf(audioData[j]) > maxValue)
-            {
-                maxValue = fabsf(audioData[j]);
-            }
+            *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:ENOMEM userInfo:nil];
         }
         
-        binnedAudio[i] = maxValue;
+        NSLog(@"Couldn't (re)allocate memory for binned audio array");
         
-        NSLog(@"Binned sample %u to %u with value %f", binStart, binEnd, maxValue);
+        return false;
+    }
+    else
+    {
+        // It did, so store the new pointer
+        binnedAudio = newBinnedAudio;
     }
     
+    return true;
+}
+
+- (BOOL)binAudioDataWithStrategy:(KFBBinStrategy)strategy error:(NSError **)error
+{
+    // Try reallocating the binned audio array
+    if (![self __reallocateBinnedAudioWithError:error])
+    {
+        return false;
+    }
+    
+    // Bin the audio and mark the view as needing display
+    [self __binAudioDataWithStrategy:strategy];
     [self setNeedsDisplay:YES];
     
     return true;
 }
 
-- (void)drawRect:(NSRect)dirtyRect
+- (void)__generateAudioPoints:(CGPoint *)audioPoints
 {
-    // Clear the view rectangle
-    [[NSColor whiteColor] set];
-    [NSBezierPath fillRect:dirtyRect];
+    // Calculate the number of pixels each bin occupies in the view
+    CGFloat stride = NSWidth([self bounds]) / self.binCount;
     
-    // Create a bunch of {sampleIndex, value} pairs
-    CGPoint audioPoints[binCount];
-    
-    CGFloat width  = [self bounds].size.width;
-    CGFloat height = [self bounds].size.height;
-    CGFloat stride = width / binCount;
-    
-    for (uint32_t i = 0; i < binCount; i++)
+    for (uint32_t i = 0; i < self.binCount; i++)
     {
         audioPoints[i].x = i * stride;
         audioPoints[i].y = binnedAudio[i];
         
         NSLog(@"Generated audio point {%f, %f}", audioPoints[i].x, audioPoints[i].y);
     }
-    
+}
+
+- (void)__createPathsForAudioPoints:(CGPoint *)audioPoints onDestinationPath:(CGMutablePathRef)path
+{
     // With thanks to Chris at SuperMegaUltraGroovy:
-    //
-    // Build the destination path
-    CGMutablePathRef path = CGPathCreateMutable();
+    //      http://supermegaultragroovy.com/2009/10/06/drawing-waveforms/
     
     // Add a centre line
     CGPoint centreLinePoints[] = {
@@ -136,14 +163,17 @@
     // Add the centre line to the destination path
     CGPathAddPath(path, NULL, centrePath);
     
+    // Now clean it up
+    CGPathRelease(centrePath);
+    
     // Get the overview waveform data (taking into account the level of detail to
     // create the reduced data set)
     CGMutablePathRef halfPath = CGPathCreateMutable();
-    CGPathAddLines(halfPath, NULL, audioPoints, binCount);
+    CGPathAddLines(halfPath, NULL, audioPoints, self.binCount);
     
     // Transform to fit the waveform ([0,1] range) into the vertical space
     // ([halfHeight,height] range)
-    double halfHeight = floor(height / 2.0);
+    double halfHeight = floor(NSHeight([self bounds]) / 2.0);
     
     CGAffineTransform xf = CGAffineTransformIdentity;
     
@@ -151,7 +181,7 @@
     xf = CGAffineTransformScale(xf, 1.0, halfHeight);
     
     // Add the transformed path to the destination path
-    CGPathAddPath( path, &xf, halfPath );
+    CGPathAddPath(path, &xf, halfPath);
     
     // Transform to fit the waveform ([0,1] range) into the vertical space
     // ([0,halfHeight] range), flipping the Y axis
@@ -164,17 +194,38 @@
     CGPathAddPath(path, &xf, halfPath);
     
     CGPathRelease(halfPath); // clean up!
+}
+
+- (void)drawRect:(NSRect)dirtyRect
+{
+    // Clear the view rectangle to white
+    [[NSColor whiteColor] set];
+    [NSBezierPath fillRect:dirtyRect];
     
-    // Now, path contains the full waveform path.
+    // Create a bunch of {sampleIndex, value} pairs
+    CGPoint audioPoints[self.binCount];
+    
+    [self __generateAudioPoints:audioPoints];
+    
+    // Build a CoreGraphics path to draw the waveform
+    CGMutablePathRef path = CGPathCreateMutable();
+    
+    [self __createPathsForAudioPoints:audioPoints onDestinationPath:path];
+    
+    // Get the graphics context
     CGContextRef cr = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
     
+    // Draw in blue...
     [[NSColor blueColor] set];
     
+    // ...with thinner lines
     CGContextSetLineWidth(cr, 0.5);
     
+    // Add the path to the context and draw it!
     CGContextAddPath(cr, path);
-    CGContextDrawPath(cr, kCGPathFillStroke);
+    CGContextDrawPath(cr, kCGPathStroke);
     
+    // We're done with the path
     CGPathRelease(path);
 }
 
