@@ -15,8 +15,11 @@ typedef enum {
 @interface KFBAudioFileWaveformView : KFBAudioFileGenericView {
     // The audio data split into bins
     float *binnedAudio;
+    
+    // The number of bins
+    uint32_t binCount;
 }
 
-- (BOOL)splitAudioDataIntoNumberOfBins:(uint32_t)binCount usingStrategy:(KFBBinStrategy)strategy withError:(NSError **)error;
+- (BOOL)splitAudioDataIntoNumberOfBins:(uint32_t)count usingStrategy:(KFBBinStrategy)strategy withError:(NSError **)error;
 
 @end

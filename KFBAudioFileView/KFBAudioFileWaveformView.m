@@ -25,9 +25,17 @@
     free(binnedAudio);
 }
 
-- (BOOL)splitAudioDataIntoNumberOfBins:(uint32_t)binCount usingStrategy:(KFBBinStrategy)strategy withError:(NSError **)error
+- (BOOL)splitAudioDataIntoNumberOfBins:(uint32_t)count usingStrategy:(KFBBinStrategy)strategy withError:(NSError **)error
 {
     // TODO: 'strategy' currently ignored
+    
+    // Store the bin count (we'll use it when drawing the view)
+    if (count == 0)
+    {
+        count = [self bounds].size.width;
+    }
+    
+    binCount = count;
     
     // Calculate the size of each bin
     uint32_t binSize = numSamples / binCount;
