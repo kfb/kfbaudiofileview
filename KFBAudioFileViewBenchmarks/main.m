@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "KFBAudioFileView.h"
 
-void benchmarkSmallBinCount(void)
+void benchmarkSmallBinCountAbsStrategy(void)
 {
     @autoreleasepool {
         KFBAudioFileWaveformView *waveformView = [[KFBAudioFileWaveformView alloc] initWithFrame:NSMakeRect(0, 0, 512, 512)
@@ -38,7 +38,7 @@ void benchmarkSmallBinCount(void)
     }
 }
 
-void benchmarkLargeBinCount(void)
+void benchmarkLargeBinCountAbsStrategy(void)
 {
     @autoreleasepool {
         KFBAudioFileWaveformView *waveformView = [[KFBAudioFileWaveformView alloc] initWithFrame:NSMakeRect(0, 0, 512, 512)
@@ -67,6 +67,64 @@ void benchmarkLargeBinCount(void)
     }
 }
 
+void benchmarkSmallBinCountAverageStrategy(void)
+{
+    @autoreleasepool {
+        KFBAudioFileWaveformView *waveformView = [[KFBAudioFileWaveformView alloc] initWithFrame:NSMakeRect(0, 0, 512, 512)
+                                                                                        binCount:32];
+        
+        NSURL   *fileURL = [[NSBundle mainBundle] URLForResource:@"STE-000" withExtension:@"wav"];
+        NSError *error;
+        
+        [waveformView setAudioFile:fileURL withError:&error];
+        
+        if (error)
+        {
+            NSLog(@"Error: %@", error);
+            
+            exit(EXIT_FAILURE);
+        }
+        
+        [waveformView binAudioDataWithStrategy:kKFBBinStrategy_Average error:&error];
+        
+        if (error)
+        {
+            NSLog(@"Error: %@", error);
+            
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
+void benchmarkLargeBinCountAverageStrategy(void)
+{
+    @autoreleasepool {
+        KFBAudioFileWaveformView *waveformView = [[KFBAudioFileWaveformView alloc] initWithFrame:NSMakeRect(0, 0, 512, 512)
+                                                                                        binCount:8192];
+        
+        NSURL   *fileURL = [[NSBundle mainBundle] URLForResource:@"STE-000" withExtension:@"wav"];
+        NSError *error;
+        
+        [waveformView setAudioFile:fileURL withError:&error];
+        
+        if (error)
+        {
+            NSLog(@"Error: %@", error);
+            
+            exit(EXIT_FAILURE);
+        }
+        
+        [waveformView binAudioDataWithStrategy:kKFBBinStrategy_Average error:&error];
+        
+        if (error)
+        {
+            NSLog(@"Error: %@", error);
+            
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
 int main(int argc, const char * argv[])
 {
     const uint32_t BENCHMARK_ITERATIONS = 1;
@@ -74,8 +132,14 @@ int main(int argc, const char * argv[])
     @autoreleasepool {
         for (uint32_t i = 0; i < BENCHMARK_ITERATIONS; i++)
         {
-            benchmarkSmallBinCount();
-            benchmarkLargeBinCount();
+            benchmarkSmallBinCountAbsStrategy();
+            benchmarkLargeBinCountAbsStrategy();
+        }
+        
+        for (uint32_t i = 0; i < BENCHMARK_ITERATIONS; i++)
+        {
+            benchmarkSmallBinCountAverageStrategy();
+            benchmarkLargeBinCountAverageStrategy();
         }
     }
     

@@ -57,11 +57,30 @@
     return maxValue;
 }
 
+- (float)__processBinWithAverageStrategyAtStartIndex:(uint32_t)binStart endIndex:(uint32_t)binEnd
+{
+    float accumulator = 0.0f;
+    
+    for (uint32_t j = binStart; j < binEnd; j++)
+    {
+        accumulator += audioData[j];
+    }
+    
+    float result = fabsf((accumulator / (float)(binEnd - binStart)));
+    
+    NSLog(@"Binned sample %u to %u with value %f", binStart, binEnd, result);
+    
+    return result;
+}
+
 - (float)__processBinUsingStrategy:(KFBBinStrategy)strategy atStartIndex:(uint32_t)binStart endIndex:(uint32_t)binEnd
 {
     switch (strategy) {
         case kKFBBinStrategy_Abs:
             return [self __processBinWithAbsStrategyAtStartIndex:binStart endIndex:binEnd];
+        
+        case kKFBBinStrategy_Average:
+            return [self __processBinWithAverageStrategyAtStartIndex:binStart endIndex:binEnd];
             
         default:
             NSLog(@"Unknown KFBBinStrategy: 0x%08x", strategy);

@@ -15,6 +15,11 @@ typedef enum {
      * negative values will be made positive!
      */
     kKFBBinStrategy_Abs,
+    /**
+     * Takes the average value of all samples. Oscillating high frequency content may
+     * cause this strategy to display badly as it averages the peaks to zero.
+     */
+    kKFBBinStrategy_Average,
 } KFBBinStrategy;
 
 /**
