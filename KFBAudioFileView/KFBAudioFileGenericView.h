@@ -32,9 +32,18 @@
     uint32_t numSamples;
 }
 
-// TODO: better organise these methods
-- (BOOL)extractSampleDataWithError:(NSError **)error;
-- (BOOL)convertAudioFileWithError:(NSError **)error;
+/**
+ * Loads an audio file from the given URL. Any necessary conversion will be performed
+ * and the sample data will be placed into a the view's memory.
+ *
+ * @param fileURL An NSURL pointing to a valid audio file.
+ *
+ * @param error An NSError object that will be set on error.
+ *
+ * @return true if the file was successfully loaded. If the file could not be loaded,
+ *         the method will return false and an appropriate NSError object will be
+ *         assigned to "error", should a pointer be provied.
+ */
 - (BOOL)setAudioFile:(NSURL *)fileURL withError:(NSError **)error;
 
 @end
