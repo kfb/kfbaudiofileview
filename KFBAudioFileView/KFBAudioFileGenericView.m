@@ -241,40 +241,7 @@ static uint32_t kTargetNumberOfChannels = 2;
         
         return false;
     }
-    
-    // Everyone loves some stats--collect them to give us a quick indication that we're reading in
-    // samples correctly. There should be approximately the same number of +ve and -ve samples
-    uint32_t positiveFrames = 0;
-    uint32_t negativeFrames = 0;
-    
-    float minValue = 0.0f;
-    float maxValue = 0.0f;
-    
-    for (uint32_t i = 0; i < framesRead; i++)
-    {
-        if (audioData[i] < 0.0f)
-        {
-            negativeFrames++;
-            
-            if (audioData[i] < minValue)
-            {
-                minValue = audioData[i];
-            }
-        }
-        else
-        {
-            positiveFrames++;
-            
-            if (audioData[i] > maxValue)
-            {
-                maxValue = audioData[i];
-            }
-        }
-    }
-    
-    NSLog(@"%u total frames, %u positive, %u negative", framesRead, positiveFrames, negativeFrames);
-    NSLog(@"min value = %f, max value = %f", minValue, maxValue);
-    
+
     return true;
 }
 
