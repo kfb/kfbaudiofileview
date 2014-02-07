@@ -22,7 +22,11 @@
 		FEA01368187EB7FB00413B79 /* KFBAudioFileGenericView.h in Headers */ = {isa = PBXBuildFile; fileRef = FEA01366187EB7FB00413B79 /* KFBAudioFileGenericView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FEA01369187EB7FB00413B79 /* KFBAudioFileGenericView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA01367187EB7FB00413B79 /* KFBAudioFileGenericView.m */; };
 		FEA0136B187EB9F400413B79 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA0136A187EB9F400413B79 /* AudioToolbox.framework */; };
-		FEC3801218A4D51A00FBBE84 /* STE-000.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEC3801118A4D51A00FBBE84 /* STE-000.wav */; };
+		FEC3803418A4E32F00FBBE84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEC3803318A4E32F00FBBE84 /* Foundation.framework */; };
+		FEC3803718A4E32F00FBBE84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC3803618A4E32F00FBBE84 /* main.m */; };
+		FEC3803B18A4E32F00FBBE84 /* KFBAudioFileViewBenchmarks.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FEC3803A18A4E32F00FBBE84 /* KFBAudioFileViewBenchmarks.1 */; };
+		FEC3803F18A4E3FE00FBBE84 /* KFBAudioFileView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA012E4187EABC700413B79 /* KFBAudioFileView.framework */; };
+		FEC3804218A4E42500FBBE84 /* STE-000.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = FEC3804018A4E40F00FBBE84 /* STE-000.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,29 @@
 			remoteInfo = KFBAudioFileView;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FEC3803018A4E32F00FBBE84 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				FEC3803B18A4E32F00FBBE84 /* KFBAudioFileViewBenchmarks.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		FEC3804118A4E41F00FBBE84 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				FEC3804218A4E42500FBBE84 /* STE-000.wav in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		FE8F009218A4D134007315C8 /* KFBAudioFileWaveformViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFBAudioFileWaveformViewTest.m; sourceTree = "<group>"; };
@@ -57,7 +84,12 @@
 		FEA01366187EB7FB00413B79 /* KFBAudioFileGenericView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFBAudioFileGenericView.h; sourceTree = "<group>"; };
 		FEA01367187EB7FB00413B79 /* KFBAudioFileGenericView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFBAudioFileGenericView.m; sourceTree = "<group>"; };
 		FEA0136A187EB9F400413B79 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		FEC3801118A4D51A00FBBE84 /* STE-000.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "STE-000.wav"; sourceTree = "<group>"; };
+		FEC3803218A4E32F00FBBE84 /* KFBAudioFileViewBenchmarks */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KFBAudioFileViewBenchmarks; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEC3803318A4E32F00FBBE84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FEC3803618A4E32F00FBBE84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FEC3803918A4E32F00FBBE84 /* KFBAudioFileViewBenchmarks-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KFBAudioFileViewBenchmarks-Prefix.pch"; sourceTree = "<group>"; };
+		FEC3803A18A4E32F00FBBE84 /* KFBAudioFileViewBenchmarks.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = KFBAudioFileViewBenchmarks.1; sourceTree = "<group>"; };
+		FEC3804018A4E40F00FBBE84 /* STE-000.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "STE-000.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +112,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FEC3802F18A4E32F00FBBE84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEC3803418A4E32F00FBBE84 /* Foundation.framework in Frameworks */,
+				FEC3803F18A4E3FE00FBBE84 /* KFBAudioFileView.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -88,6 +129,7 @@
 			children = (
 				FEA012ED187EABC700413B79 /* KFBAudioFileView */,
 				FEA01302187EABC700413B79 /* KFBAudioFileViewTests */,
+				FEC3803518A4E32F00FBBE84 /* KFBAudioFileViewBenchmarks */,
 				FEA012E6187EABC700413B79 /* Frameworks */,
 				FEA012E5187EABC700413B79 /* Products */,
 			);
@@ -98,6 +140,7 @@
 			children = (
 				FEA012E4187EABC700413B79 /* KFBAudioFileView.framework */,
 				FEA012FB187EABC700413B79 /* KFBAudioFileViewTests.xctest */,
+				FEC3803218A4E32F00FBBE84 /* KFBAudioFileViewBenchmarks */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,6 +151,7 @@
 				FEA0136A187EB9F400413B79 /* AudioToolbox.framework */,
 				FEA012E7187EABC700413B79 /* Cocoa.framework */,
 				FEA012FC187EABC700413B79 /* XCTest.framework */,
+				FEC3803318A4E32F00FBBE84 /* Foundation.framework */,
 				FEA012E9187EABC700413B79 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -151,7 +195,6 @@
 		FEA01302187EABC700413B79 /* KFBAudioFileViewTests */ = {
 			isa = PBXGroup;
 			children = (
-				FEC3801318A4D53700FBBE84 /* Test Resources */,
 				FEA01303187EABC700413B79 /* Supporting Files */,
 				FE8F009218A4D134007315C8 /* KFBAudioFileWaveformViewTest.m */,
 			);
@@ -167,12 +210,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		FEC3801318A4D53700FBBE84 /* Test Resources */ = {
+		FEC3803518A4E32F00FBBE84 /* KFBAudioFileViewBenchmarks */ = {
 			isa = PBXGroup;
 			children = (
-				FEC3801118A4D51A00FBBE84 /* STE-000.wav */,
+				FEC3804018A4E40F00FBBE84 /* STE-000.wav */,
+				FEC3803618A4E32F00FBBE84 /* main.m */,
+				FEC3803A18A4E32F00FBBE84 /* KFBAudioFileViewBenchmarks.1 */,
+				FEC3803818A4E32F00FBBE84 /* Supporting Files */,
 			);
-			name = "Test Resources";
+			path = KFBAudioFileViewBenchmarks;
+			sourceTree = "<group>";
+		};
+		FEC3803818A4E32F00FBBE84 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FEC3803918A4E32F00FBBE84 /* KFBAudioFileViewBenchmarks-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +282,24 @@
 			productReference = FEA012FB187EABC700413B79 /* KFBAudioFileViewTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		FEC3803118A4E32F00FBBE84 /* KFBAudioFileViewBenchmarks */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FEC3803C18A4E32F00FBBE84 /* Build configuration list for PBXNativeTarget "KFBAudioFileViewBenchmarks" */;
+			buildPhases = (
+				FEC3802E18A4E32F00FBBE84 /* Sources */,
+				FEC3802F18A4E32F00FBBE84 /* Frameworks */,
+				FEC3803018A4E32F00FBBE84 /* CopyFiles */,
+				FEC3804118A4E41F00FBBE84 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KFBAudioFileViewBenchmarks;
+			productName = KFBAudioFileViewBenchmarks;
+			productReference = FEC3803218A4E32F00FBBE84 /* KFBAudioFileViewBenchmarks */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -256,6 +328,7 @@
 			targets = (
 				FEA012E3187EABC700413B79 /* KFBAudioFileView */,
 				FEA012FA187EABC700413B79 /* KFBAudioFileViewTests */,
+				FEC3803118A4E32F00FBBE84 /* KFBAudioFileViewBenchmarks */,
 			);
 		};
 /* End PBXProject section */
@@ -273,7 +346,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEC3801218A4D51A00FBBE84 /* STE-000.wav in Resources */,
 				FEA01307187EABC700413B79 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +368,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE8F009318A4D134007315C8 /* KFBAudioFileWaveformViewTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEC3802E18A4E32F00FBBE84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEC3803718A4E32F00FBBE84 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +549,28 @@
 			};
 			name = Release;
 		};
+		FEC3803D18A4E32F00FBBE84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KFBAudioFileViewBenchmarks/KFBAudioFileViewBenchmarks-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FEC3803E18A4E32F00FBBE84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KFBAudioFileViewBenchmarks/KFBAudioFileViewBenchmarks-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -498,6 +600,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		FEC3803C18A4E32F00FBBE84 /* Build configuration list for PBXNativeTarget "KFBAudioFileViewBenchmarks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEC3803D18A4E32F00FBBE84 /* Debug */,
+				FEC3803E18A4E32F00FBBE84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

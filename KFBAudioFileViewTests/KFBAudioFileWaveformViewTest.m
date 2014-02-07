@@ -25,28 +25,4 @@
     [super tearDown];
 }
 
-- (void)testEndToEndPerformance
-{
-    KFBAudioFileWaveformView *waveformView = [[KFBAudioFileWaveformView alloc] initWithFrame:NSMakeRect(0, 0, 512, 512)];
-    
-    NSURL   *fileURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"STE-000" withExtension:@"wav"];
-    NSError *error   = nil;
-    
-    [waveformView setAudioFile:fileURL withError:&error];
-
-    if (error)
-    {
-        XCTFail(@"%@", error);
-    }
-
-    error = nil;
-    
-    [waveformView binAudioDataWithStrategy:kKFBBinStrategy_Abs error:&error];
-    
-    if (error)
-    {
-        XCTFail(@"%@", error);
-    }
-}
-
 @end
