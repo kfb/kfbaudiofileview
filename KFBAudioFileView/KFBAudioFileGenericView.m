@@ -78,13 +78,13 @@ static uint32_t kTargetNumberOfChannels = 2;
     }
     
     // Convert the file to our internal representation
-    if (![self convertAudioFileWithError:error])
+    if (![self __convertAudioFileWithError:error])
     {
         return false;
     }
     
     // Extract the sample data
-    if (![self extractSampleDataWithError:error])
+    if (![self __extractSampleDataWithError:error])
     {
         return false;
     }
@@ -92,7 +92,7 @@ static uint32_t kTargetNumberOfChannels = 2;
     return true;
 }
 
-- (BOOL)convertAudioFileWithError:(NSError **)error
+- (BOOL)__convertAudioFileWithError:(NSError **)error
 {
     // Convert the audio file's representation to 96KHz/24-bit stereo
     NSLog(@"Converting file representation to internal format");
@@ -162,7 +162,7 @@ static uint32_t kTargetNumberOfChannels = 2;
     return true;
 }
 
-- (BOOL)extractSampleDataWithError:(NSError **)error
+- (BOOL)__extractSampleDataWithError:(NSError **)error
 {
     // If there's already some sample data, free it
     if (audioData)
