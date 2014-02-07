@@ -51,6 +51,8 @@
         }
     }
     
+    NSLog(@"Binned sample %u to %u with value %f", binStart, binEnd, maxValue);
+    
     // Give back the maximum value for the bin
     return maxValue;
 }
@@ -72,6 +74,8 @@
 {
     uint32_t binSize = numSamples / self.binCount;
     
+    NSBlockOperation *blockOperation = [NSBlockOperation new];
+    
     for (uint32_t i = 0; i < self.binCount; i++)
     {
         uint32_t binStart = i * binSize;
@@ -85,10 +89,12 @@
             NSLog(@"Adjusting binEnd to numSamples (%i) to avoid overflow", numSamples);
         }
         
-        binnedAudio[i] = [self __processBinUsingStrategy:kKFBBinStrategy_Abs atStartIndex:binStart endIndex:binEnd];
-        
-        NSLog(@"Binned sample %u to %u with value %f", binStart, binEnd, binnedAudio[i]);
+        [blockOperation addExecutionBlock:^{
+            binnedAudio[i] = [self __processBinUsingStrategy:strategy atStartIndex:binStart endIndex:binEnd];
+        }];
     }
+    
+    [blockOperation start];
 }
 
 - (BOOL)__reallocateBinnedAudioWithError:(NSError **)error
