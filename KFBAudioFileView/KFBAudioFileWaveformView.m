@@ -160,15 +160,35 @@
 - (void)__generateAudioPoints:(CGPoint *)audioPoints
 {
     // Calculate the number of pixels each bin occupies in the view
-    CGFloat stride = NSWidth([self bounds]) / self.binCount;
+    CGFloat stride = NSWidth([self bounds]) / (float)self.binCount;
+
+    // Work out how many logical processor cores we have
+    uint32_t coreCount = (uint32_t)[[NSProcessInfo processInfo] activeProcessorCount];
     
-    for (uint32_t i = 0; i < self.binCount; i++)
+    // Set up a new block operation
+    NSBlockOperation *blockOperation = [NSBlockOperation new];
+    
+    // Divide the work into the numer of cores
+    for (uint32_t i = 0; i < coreCount; i++)
     {
-        audioPoints[i].x = i * stride;
-        audioPoints[i].y = binnedAudio[i];
+        // Calculate the range for this core
+        uint32_t rangeStart = i * (self.binCount / coreCount);
+        uint32_t rangeEnd   = rangeStart + (self.binCount / coreCount);
         
-        NSLog(@"Generated audio point {%f, %f}", audioPoints[i].x, audioPoints[i].y);
+        // Add the block operation
+        [blockOperation addExecutionBlock:^{
+            for (uint32_t j = rangeStart; j < rangeEnd; j++)
+            {
+                audioPoints[j].x = j * stride;
+                audioPoints[j].y = binnedAudio[j];
+                
+                NSLog(@"Generated audio point {%f, %f}", audioPoints[j].x, audioPoints[j].y);
+            }
+        }];
     }
+    
+    // Generate the points
+    [blockOperation start];
 }
 
 - (void)__createPathsForAudioPoints:(CGPoint *)audioPoints onDestinationPath:(CGMutablePathRef)path
