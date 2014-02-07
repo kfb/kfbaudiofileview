@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "KFBAudioFileView.h"
 
-int main(int argc, const char * argv[])
+void benchmarkSmallBinCount(void)
 {
     @autoreleasepool {
-        KFBAudioFileWaveformView *waveformView = [[KFBAudioFileWaveformView alloc] initWithFrame:NSMakeRect(0, 0, 512, 512)];
+        KFBAudioFileWaveformView *waveformView = [[KFBAudioFileWaveformView alloc] initWithFrame:NSMakeRect(0, 0, 512, 512)
+                                                                                        binCount:32];
         
         NSURL   *fileURL = [[NSBundle mainBundle] URLForResource:@"STE-000" withExtension:@"wav"];
         NSError *error;
@@ -22,7 +23,8 @@ int main(int argc, const char * argv[])
         if (error)
         {
             NSLog(@"Error: %@", error);
-            return -1;
+            
+            exit(EXIT_FAILURE);
         }
         
         [waveformView binAudioDataWithStrategy:kKFBBinStrategy_Abs error:&error];
@@ -30,7 +32,50 @@ int main(int argc, const char * argv[])
         if (error)
         {
             NSLog(@"Error: %@", error);
-            return -1;
+            
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
+void benchmarkLargeBinCount(void)
+{
+    @autoreleasepool {
+        KFBAudioFileWaveformView *waveformView = [[KFBAudioFileWaveformView alloc] initWithFrame:NSMakeRect(0, 0, 512, 512)
+                                                                                        binCount:8192];
+        
+        NSURL   *fileURL = [[NSBundle mainBundle] URLForResource:@"STE-000" withExtension:@"wav"];
+        NSError *error;
+        
+        [waveformView setAudioFile:fileURL withError:&error];
+        
+        if (error)
+        {
+            NSLog(@"Error: %@", error);
+            
+            exit(EXIT_FAILURE);
+        }
+        
+        [waveformView binAudioDataWithStrategy:kKFBBinStrategy_Abs error:&error];
+        
+        if (error)
+        {
+            NSLog(@"Error: %@", error);
+            
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
+int main(int argc, const char * argv[])
+{
+    const uint32_t BENCHMARK_ITERATIONS = 1;
+    
+    @autoreleasepool {
+        for (uint32_t i = 0; i < BENCHMARK_ITERATIONS; i++)
+        {
+            benchmarkSmallBinCount();
+            benchmarkLargeBinCount();
         }
     }
     
